@@ -46,7 +46,7 @@ const Project = () => {
     }
 
     const addCollaborators = () => {
-        axios.put("/projects/add-user", {
+        axios.put(`${import.meta.env.VITE_API_URL}/projects/add-user`, {
             projectId: project._id,
             users: Array.from(selectedUserId)
         }).then(res => {
@@ -85,16 +85,16 @@ const Project = () => {
             setMessages(prev => [...prev, data])
         })
 
-        axios.get(`/projects/get-project/${project._id}`).then(res => {
+        axios.get(`${import.meta.env.VITE_API_URL}/projects/get-project/${project._id}`).then(res => {
             setProject(res.data.project)
             setFileTree(res.data.project.fileTree || {})
         })
 
-        axios.get('/users/all').then(res => setUsers(res.data.users)).catch(console.error)
+        axios.get(`${import.meta.env.VITE_API_URL}/users/all`).then(res => setUsers(res.data.users)).catch(console.error)
     }, [])
 
     const saveFileTree = (ft) => {
-        axios.put('/projects/update-file-tree', {
+        axios.put(`${import.meta.env.VITE_API_URL}/projects/update-file-tree`, {
             projectId: project._id,
             fileTree: ft
         }).then(console.log).catch(console.error)

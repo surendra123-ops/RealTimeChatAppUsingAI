@@ -18,7 +18,7 @@ const Login = () => {
 
         e.preventDefault()
 
-        axios.post('/users/login', {
+        axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
             email,
             password
         }).then((res) => {

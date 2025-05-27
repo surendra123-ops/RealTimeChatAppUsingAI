@@ -17,7 +17,7 @@ const Register = () => {
 
         e.preventDefault()
 
-        axios.post('/users/register', {
+        axios.post(`${import.meta.env.VITE_API_URL}/users/register`, {
             email,
             password
         }).then((res) => {
