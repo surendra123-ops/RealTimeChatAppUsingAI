@@ -12,11 +12,14 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5173',
+        origin: (origin, callback) => {
+            callback(null, true); // Allow all origins dynamically
+        },
         credentials: true,
     },
-    transports: ['websocket', 'polling'], // keep your transports
+    transports: ['websocket', 'polling'],
 });
+
 
 // Authentication middleware for sockets
 io.use(async (socket, next) => {
