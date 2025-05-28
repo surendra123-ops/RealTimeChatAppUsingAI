@@ -4,7 +4,15 @@ import { useLocation } from 'react-router-dom'
 import axios from '../config/axios'
 import { initializeSocket, receiveMessage, sendMessage } from '../config/socket'
 import Markdown from 'markdown-to-jsx'
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
+// In your React component (or a dedicated syntax highlighter component)
+import hljs from 'highlight.js/lib/core';
+// import the languages you need, e.g.:
+import javascript from 'highlight.js/lib/languages/javascript';
+import 'highlight.js/styles/nord.css'; // import CSS from node_modules
+
+hljs.registerLanguage('javascript', javascript);
+
 
 function SyntaxHighlightedCode(props) {
     const ref = useRef(null)
